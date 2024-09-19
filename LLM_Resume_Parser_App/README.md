@@ -14,9 +14,6 @@ pinned: true
 A job application form powered by a Large Language Model (LLM) Resume Parser using StreamLit, LangChain, Groq and LLAMA3.
 
 
-This project combines `LangChain`, `StreamLit`, `Groq` and `LLAMA3`
-
-
 ## How it works:
 
 Once applicant's upload their resume file (pdf or word), the resume text is extracted and sent to Groq API to LLAMA3 model. The model returned a `json blob` as prompted  and this data is automatically entered into the application form where the user can edit it or add to it.
@@ -37,15 +34,7 @@ It was and still possible to divide the data extracting process to multiple para
 
 Thank you for taking the time to explore my code and looking forward to hearing your opinions and comments on the project.<br>
 
-**Please take a look at code and live demo on the links below:**<br>
 
-**Live Demo** on `Hugghingface` `Spaces`:
-
-https://huggingface.co/spaces/w-sliman/LLM_Resume_Parser_App
-
-`Github` Repo:
-
-https://github.com/w-sliman/LLM-Resume-Parsing-App
 
 
 
