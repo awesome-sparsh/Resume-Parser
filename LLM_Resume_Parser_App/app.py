@@ -96,10 +96,10 @@ async def upload_resume(
             start=job['started_at']
             end=job['ended_at']
             total_job_experience+=calculate_duration(start, end)
-        candidate_data["total_job_experience_months"]=total_job_experience
+        candidate_data["total_job_experience_months"]=str(total_job_experience)
         total_job_experience_years = round(total_job_experience / 12)
         total_job_experience_years = int(total_job_experience_years)
-        candidate_data["total_job_experience_years"] = total_job_experience_years
+        candidate_data["total_job_experience_years"] = str(total_job_experience_years)
 
 
 
