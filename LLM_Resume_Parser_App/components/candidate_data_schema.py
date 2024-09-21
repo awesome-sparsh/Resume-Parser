@@ -59,4 +59,4 @@ class candidate(BaseModel):
     jobs: Optional[List[job]] = Field(
         description="Only include jobs the candidate listed in a work experience section. Return None if he hasn't listed any.")
     skills: Optional[list[str]] = Field(description="list of candidate's skills that are relevant to the job")
-    
+    description: Optional[str] = Field(description="a short description or a autobiography of the candidate describing his qualities and proefessional goals. Return None if hasnt listed one")

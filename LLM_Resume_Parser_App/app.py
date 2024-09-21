@@ -90,6 +90,11 @@ async def upload_resume(
         candidate_data['email'] = ''
 #    candidate_data['degrees'][0]['sparsh']='heloo'
 
+    if 'phone_number' in candidate_data and candidate_data['phone_number']!=None:
+        phone=candidate_data['phone_number']
+        candidate_data['phone_number']=str(phone)
+
+
     total_job_experience=0
     if candidate_data['jobs']:
         for job in candidate_data['jobs']:
