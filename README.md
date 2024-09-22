@@ -15,7 +15,7 @@ A job application form powered by a Large Language Model (LLM) Resume Parser usi
 
 
 ## How it works:
-
+Works as a post api
 Once applicant's upload their resume file (pdf or word), the resume text is extracted and sent to Groq API to LLAMA3 model. The model returned a `json blob` as prompted  and this data is automatically entered into the application form where the user can edit it or add to it.
 
 ## Notes
