@@ -41,7 +41,6 @@ class Activities_and_Certification(BaseModel):
     description: Optional[str] = Field(description="information about the certificate or activity or publications. Return null if not provided")
 
 
-
 class candidate(BaseModel):
     """personal information about the candidate"""
     Activities_and_Certifications: Optional[list[Activities_and_Certification]] = Field(
@@ -56,7 +55,11 @@ class candidate(BaseModel):
     email: Optional[str] = Field(description="Email address")
     country: Optional[str] = Field(description="country")
     degrees: Optional[List[degree]] = Field(description="list of all candidate's degrees")
-    jobs: Optional[List[job]] = Field(
-        description="Only include jobs the candidate listed in a work experience section. Return None if he hasn't listed any.")
+    jobs: Optional[List[job]] = Field(description="Only include jobs the candidate listed in a work experience section. Return None if he hasn't listed any.")
     skills: Optional[list[str]] = Field(description="list of candidate's skills that are relevant to the job")
     description: Optional[str] = Field(description="a short description or a autobiography of the candidate describing his qualities and proefessional goals. Return None if hasnt listed one")
+    #links: Optional[list[Link]] = Field(description="list of candidate ocial media links such as twitter, linkedin, instagram or an url for a portfolio website. Return None if doesnt exist")
+    linkedin: Optional[str] = Field(description="candidates linkedin handle web url. Return None if doesnt exist")
+    instagram: Optional[str] = Field(description="candidates instagram handle web url. Return None if doesnt exist")
+    twitter: Optional[str] = Field(description="candidates twitter handle web url. Return None if doesnt exist")
+    portfolio: Optional[str] = Field(description="candidates portfolio website web url. Return None if doesnt exist")
