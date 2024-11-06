@@ -8,6 +8,7 @@ import aiofiles
 from PyPDF2 import PdfReader
 from dateutil import parser
 from datetime import date
+from striprtf.striprtf import rtf_to_text
 
 
 def read_pdf_text(file_content):
@@ -38,12 +39,40 @@ def read_docx_text(file_content):
     Returns:
         str: The extracted text from the DOCX file.
     """
-    doc = docx.Document(io.BytesIO(file_content))
-    text = ""
-    for paragraph in doc.paragraphs:
-        text += paragraph.text.strip() + "\n"
-    return text
+    try:
+        doc = docx.Document(io.BytesIO(file_content))
+        text = ""
+        for paragraph in doc.paragraphs:
+            text += paragraph.text.strip() + "\n"
+        return text
+    except Exception as e:
+        print(f"An error occurred while reading the DOCX file: {e}")
+        return ""
 
+def read_rtf_text(file_content):
+    """
+    Extracts text from an RTF file.
+
+    Args:
+        file_content (bytes): The RTF file content.
+
+    Returns:
+        str: The extracted text from the RTF file.
+    """
+    try:
+        # Try decoding the file content with UTF-8 encoding
+        rtf_content = file_content.decode("utf-8")
+    except UnicodeDecodeError:
+        # If UTF-8 decoding fails, try decoding with 'windows-1252' encoding (commonly used for RTF files)
+        try:
+            rtf_content = file_content.decode("windows-1252")
+        except UnicodeDecodeError as e:
+            print(f"Error decoding file with 'windows-1252': {e}")
+            return ""
+    
+    # Now that we have decoded the content, convert the RTF to text
+    text = rtf_to_text(rtf_content)
+    return text
 
 async def extract_resume_text(file_content, file_type):
     """
@@ -63,6 +92,8 @@ async def extract_resume_text(file_content, file_type):
     elif file_type in ["txt", "text"]:
         async with aiofiles.BytesIO(file_content) as file:
             return await file.read()
+    elif file_type == "rtf":
+        return read_rtf_text(file_content)
     else:
         raise ValueError(f"Unsupported file type: {file_type}")
 
@@ -144,4 +175,7 @@ def is_valid_email(email):
         bool: True if the email is valid, False otherwise.
     """
     pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-    return re.match(pattern, email) is not None
+    if email!=None:
+        return re.match(pattern, email) is not None
+    else:
+        return False
